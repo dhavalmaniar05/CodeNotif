@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CodeNotif</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign In</string>
+    <string name="or">OR</string>
+    <string name="sign_in_with_google">SIGN IN WITH GOOGLE</string>
+    <string name="email">Email</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register">Register</string>
+    <string name="new_user">Don\'t have an account?</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="continueButton">Continue</string>
+    <string name="existing_user">Already have an account?</string>
+    <string name="browse">Browse</string>
+    <string name="upload_document">UPLOAD DOCUMENT</string>
+    <string name="update">Update</string>
+    <string name="linkedList">A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. The elements in a linked list are linked.\n\nstruct node{\nint data;\nstruct node *next;\n};\n/* Initialize nodes */\n\nstruct node *head;\n\nstruct node *one = NULL;\nstruct node *two = NULL;\nstruct node *three = NULL;\n\n/* Allocate memory */\n\none = malloc(sizeof(struct node));\ntwo = malloc(sizeof(struct node));\nthree = malloc(sizeof(struct node));\n\n/* Assign data values */\n\none->data = 1;\ntwo->data = 2;\n\nthree->data=3;</string>
+    <string name="tree">A tree is a popular data structure that is non-linear in nature. Unlike other data structures like array, stack, queue, and linked list which are linear in nature, a tree represents a hierarchical structure.\n\nDefining a tree- \n\nstruct node\n{\nint data;\nstruct node* left;\nstruct node* right;\n};\n\nPre-order Traversal of the above tree: 1-2-4-5-3-6-7\nIn-order Traversal of the above tree: 4-2-5-1-6-3-7\nPost-order Traversal of the above tree: 4-5-2-6-7-3-1</string>
+    <string name="graphs">A Graph is a non-linear data structure consisting of vertices and edges. The vertices are sometimes also referred to as nodes and the edges are lines or arcs that connect any two nodes in the graph. More formally a Graph is composed of a set of vertices( V ) and a set of edges( E ). The graph is denoted by G(E, V).\n\nAdjacency Matrix is a 2D array of size V x V where V is the number of vertices in a graph. Let the 2D array be adj[][], a slot adj[i][j] = 1.\n\nAdding edge in graph-\n\nvoid addEdge(vectorU+003EintU+003C adj[], int u, int v)\n{\nadj[u].push_back(v);\nadj[v].push_back(u);\n\n</string>
+    <string name="dp">Dynamic Programming is mainly an optimization over plain recursion. Wherever we see a recursive solution that has repeated calls for same inputs, we can optimize it using Dynamic Programming. The idea is to simply store the results of subproblems, so that we do not have to re-compute them when needed later. This simple optimization reduces time complexities from exponential to polynomial.</string>
+    <string name="array">Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.\n\nTo declare an array, define the variable type, specify the name of the array followed by square brackets and specify the number of elements it should store.\n\n// declare and initialize an array-\nint x[] = {19, 10, 8, 17, 9, 15};\n\n//  store input from user to array\n\nfor (int i = 0; i \u2269 5; ++i) {\ncin \u22D7\u22D7 numbers[i];\n}</string>
+    <string name="string">C++ has in its definition a way to represent a sequence of characters as an object of the class. This class is called std:: string.\n\ntypedef basic_string string;\n\nCode-\nstring cars[4] = {"Volvo", "BMW", "Ford", "Mazda"};\nint x[] = {19, 10, 8, 17, 9, 15};\n\nPrinting array-for (int i = 0; i U+003C 5; ++i) \n{\ncout>\u2265>\u2265numbers[i]  "  ";\n}\n\nThe string class stores the characters as a sequence of bytes with the functionality of allowing access to the single-byte character.</string>
+    <string name="bs">Input: arr[] = {10, 20, 30, 50, 60, 80, 110, 130, 140, 170}, x = 110\nOutput: 6\n\nBinary Search is a searching algorithm used in a sorted array by repeatedly dividing the search interval in half.\n\n  binarySearch(arr, x, low, high)\n\n    if low > high\n    return False \n\nelse\n    mid = (low + high) / 2\nif x == arr[mid]\nreturn mid\n\nelse if x > arr[mid]\n    return binarySearch(arr, x, mid + 1, high)\n\nelse\n    return binarySearch(arr, x, low, mid - 1)  \n\nTime complexity: O(Log n). </string>
+    <string name="dac">This technique can be divided into the following three parts:\n\nDivide: This involves dividing the problem into smaller sub-problems.\nConquer: Solve sub-problems by calling recursively until solved.\nCombine: Combine the sub-problems to get the final solution of the whole problem.\n\nCode:\n\nDAC(a, i, j)\n\n{\nif(small(a, i, j))\nreturn(Solution(a, i, j))\n\nelse\n\nm = divide(a, i, j)\nb = DAC(a, i, mid)\nc = DAC(a, mid+1, j)\nd = combine(b, c)\n\nreturn(d)\n}\n\n For further readings: </string>
+    <string name="greedy">Greedy is an algorithmic paradigm that builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. So the problems where choosing locally optimal also leads to global solution are the best fit for Greedy.\n\n Code: \n\nstring cars[4] = {"Volvo", "BMW", "Ford", "Mazda"};\nint x[] = {19, 10, 8, 17, 9, 15};\n\nPrinting array-for (int i = 0; i U+003C 5; ++i) \n{\ncout>\u2265>\u2265numbers[i]  "  ";\n}\n\nTime complexity: Depends on the problem. </string>
+</resources>

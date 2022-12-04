@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pnt"
+    app:cardBackgroundColor="@color/purple_200"
+    android:layout_margin="8dp"
+    android:clickable="true">
+
+
+
+    <RelativeLayout
+        android:id="@+id/upcomingcontests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:textSize="15dp"
+            android:fontFamily="@font/poppins_bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:id="@+id/start_time"
+            android:fontFamily="@font/poppins_medium"
+            />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:src="@drawable/ic_alarm"
+            android:id="@+id/alarm"
+            />
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+</com.google.android.material.card.MaterialCardView>

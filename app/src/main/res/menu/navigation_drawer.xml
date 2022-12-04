@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="User"
+        android:id="@+id/expanded_menu_profile"
+        >
+        <menu>
+            <item
+                android:id="@+id/menu_home"
+                android:icon="@drawable/home"
+                android:title="Home"
+                android:checkable="true"/>
+
+            <item
+                android:id="@+id/menu_profile"
+                android:icon="@drawable/user"
+                android:title="Profile"
+                android:checkable="true"/>
+        </menu>
+
+    </item>
+    <item android:title="Contest ratings"
+        android:id="@+id/expanded_menu"
+        >
+
+        <menu>
+            <item
+                android:id="@+id/menu_codeforces"
+                android:icon="@drawable/cf"
+                android:title="Codeforces"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/menu_codechef"
+                android:icon="@drawable/chef"
+                android:title="Codechef"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/menu_leetcode"
+                android:icon="@drawable/leet"
+                android:title="Leetcode"
+                android:checkable="true"/>
+        </menu>
+    </item>
+
+    <item
+        android:title="Resources"
+        android:id="@+id/res">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_dsa"
+                android:icon="@drawable/sheet"
+                android:title="DSA Cheatsheet"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/menu_contest"
+                android:icon="@drawable/clock"
+                android:title="Upcoming contests"
+                android:checkable="true"/>
+<!--            <item-->
+<!--                android:id="@+id/menu_notes"-->
+<!--                android:icon="@drawable/note"-->
+<!--                android:title="My notes"-->
+<!--                android:checkable="true"/>-->
+        </menu>
+    </item>
+</menu>

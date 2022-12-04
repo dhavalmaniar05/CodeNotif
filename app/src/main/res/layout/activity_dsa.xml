@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DsaActivity">
+
+
+    <include
+        layout="@layout/title_bar"></include>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/header_navigation_drawer"
+        android:background="@drawable/round"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+
+        app:menu="@menu/navigation_drawer"
+        />
+
+
+    <Button
+        android:id="@+id/navBtnDSA"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/menu"
+        android:onClick="showNav"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/page"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="79dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navBtnDSA">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/dataStr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/line"
+                android:padding="15dp"
+                android:text="Data structures"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp">
+
+            </TextView>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/arrayLayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navBtnDSA">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/arrayBtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Array"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/array"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/array"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    android:textSize="16.2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/arrayBtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/stringLayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arrayLayer">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/strBtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="String"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/str"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/string"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    android:textSize="16.2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/strBtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/graphLayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stringLayer">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/graphBtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:backgroundTint="@color/purple_500"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Graphs"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/graphs"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    android:textSize="16.2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/graphBtn"
+                    app:layout_constraintVertical_bias="0.476" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/DPLayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/graphLayer">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/DPbtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Dynamic programming"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/DP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/dp"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    android:textSize="16.2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/DPbtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/TreeLayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DPLayer">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/TreeBtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Binary Trees"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/tree"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:textSize="16.2dp"
+                    android:background="@color/purple_300"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TreeBtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llLayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TreeLayer">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/llBtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Linked list"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="16.2dp"
+                    android:text="@string/linkedList"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llBtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/algo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/line"
+                android:padding="15dp"
+                android:text="Algolithms"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp">
+
+            </TextView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bslayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/algo">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/bsbtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Binary Search"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/bs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/bs"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    android:textSize="16.2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bsbtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/daclayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bslayer">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/dacbtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Divide and Conquer"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/dac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/dac"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    android:textSize="16.2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dacbtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/grelayer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/daclayer">
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/grebtn"
+                    android:layout_width="match_parent"
+                    android:drawableEnd="@drawable/down"
+                    android:layout_height="67dp"
+                    android:onClick="hide5"
+                    android:paddingStart="10dp"
+                    android:text="Greedy algorithm"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/purple_500"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/gre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/greedy"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:background="@color/purple_300"
+                    android:textSize="16.2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/grebtn"
+                    app:layout_constraintVertical_bias="0.476" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
