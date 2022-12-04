@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -32,6 +33,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,6 +66,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<ContestsModel> contests;
     private ArrayList<ListItems> listItems;
     private ArrayList<CodeForcesModel> arraylist3;
+
+    private FirebaseAuth mauth;
+    private FirebaseUser cuser;
+    private DatabaseReference databaseReference;
+    private ProgressDialog progressDialog;
     private void apicall1()
     {
         String hard="100";
@@ -103,9 +116,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Log.e("Dhaval2",CodeChefDataModel.getUsername());
 
     }
-    private void apicall3()
+    private void apicall3(String username)
     {
-        String url="https://codeforces.com/api/user.info?handles=Diabetic_ladoo";
+        String url="https://codeforces.com/api/user.info?handles="+username;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Log.d("shubh", "onResponse: "+ url);
@@ -117,6 +130,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         try {
                             JSONObject codeChefObject = new JSONObject(response);
                             JSONArray arr = codeChefObject.getJSONArray("result");
@@ -154,6 +168,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 // TODO: Handle error
                 Log.d("dhaval", "OnError" + error.getLocalizedMessage());
 
@@ -184,6 +199,31 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         nav.setNavigationItemSelectedListener(this);
 
+        mauth = FirebaseAuth.getInstance();
+        cuser = mauth.getCurrentUser();
+        String Uid = cuser.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Details..");
+
+        progressDialog.show();
+        databaseReference.child(Uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userDetails user = snapshot.getValue(userDetails.class);
+                if(user!=null){
+                    username = user.getCodeforces();
+                    Log.d("Animish",username);
+                    apicall3(username);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("animish",error.toString());
+            }
+        });
+
         arrayList=new ArrayList<>();
         contests=new ArrayList<>();
         listItems=new ArrayList<>();
@@ -191,7 +231,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         arraylist3=new ArrayList<>();
         apicall1();
         apicall2();
-        apicall3();
 
     }
 

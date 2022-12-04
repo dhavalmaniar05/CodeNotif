@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class LeetCode_page extends AppCompatActivity implements NavigationView.O
     private ArrayList<ContestPagesModel>arrayList;
     private ArrayList<ContestsModel> contests;
     private ArrayList<ListItems> listItems;
+    private ProgressDialog progressDialog;
     private void apicall1()
     {
 
@@ -77,6 +79,7 @@ public class LeetCode_page extends AppCompatActivity implements NavigationView.O
 
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         Log.d("apo", "onResponse: " + response.toString());
                         try {
                             JSONObject codeChefObject = new JSONObject(response);
@@ -122,6 +125,7 @@ public class LeetCode_page extends AppCompatActivity implements NavigationView.O
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 // TODO: Handle error
                 Log.d("dhaval", "OnError" + error.getLocalizedMessage());
 
@@ -154,6 +158,10 @@ public class LeetCode_page extends AppCompatActivity implements NavigationView.O
         arrayList=new ArrayList<>();
         contests=new ArrayList<>();
         listItems=new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Details..");
+
+        progressDialog.show();
         apicall1();
         apicall2();
     }

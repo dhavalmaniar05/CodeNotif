@@ -53,7 +53,7 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
 
     private ProgressDialog progressDialog;
 
-     private  String username;
+    private  String username;
     private String url1;
 
     Button navBtn;
@@ -79,6 +79,10 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
         cuser = mauth.getCurrentUser();
         String Uid = cuser.getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Details..");
+
+        progressDialog.show();
         databaseReference.child(Uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -107,12 +111,10 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
 
     private void apicall1(String username1)
     {
-
         String url="https://codeforces.com/api/user.info?handles="+username1;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Log.d("ayush", "onResponse: "+ url);
-// Request a string response from the provided URL.
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -120,6 +122,7 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
 
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         try {
                             JSONObject codeChefObject = new JSONObject(response);
                             // Log.d("shreyan", "onResponse: "+codeChefObject.getString("status"));
@@ -168,6 +171,7 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
             @Override
             public void onErrorResponse(VolleyError error) {
                 // TODO: Handle error
+                progressDialog.dismiss();
                 Log.d("dhaval", "OnError" + error.getLocalizedMessage());
                 Toast.makeText(CodeforcesPage.this, "Incorrect username", Toast.LENGTH_SHORT).show();
 
@@ -192,9 +196,9 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
 
-
                     @Override
                     public void onResponse(String response) {
+
                         Log.d("apo", "onResponse: " + response.toString());
                         try {
                             JSONObject codeChefObject = new JSONObject(response);
@@ -240,6 +244,7 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
 
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 // TODO: Handle error
                 Log.d("dhaval", "OnError" + error.getLocalizedMessage());
 

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ public class ContestsActivity extends AppCompatActivity implements TimePickerDia
     private Button btn;
     private ImageView imgview;
     private ArrayList<ContestsModel> contestlist;
+    private ProgressDialog progressDialog;
     private void apireq() {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://clist.by/api/v2/contest/?username=dhavalmaniar05&api_key=e825bf3e300213ac2ddc47d5ad0f11dd4347ce5a&format=json";
@@ -65,6 +67,7 @@ public class ContestsActivity extends AppCompatActivity implements TimePickerDia
 
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         Log.d("apo", "onResponse: " + response.toString());
                         try {
                             JSONObject codeChefObject = new JSONObject(response);
@@ -110,6 +113,7 @@ public class ContestsActivity extends AppCompatActivity implements TimePickerDia
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 // TODO: Handle error
                 Log.d("dhaval", "OnError" + error.getLocalizedMessage());
 
@@ -131,13 +135,16 @@ public class ContestsActivity extends AppCompatActivity implements TimePickerDia
         setContentView(R.layout.activity_contests);
 
         toolbar = findViewById(R.id.my_toolbar);
-        toolbar.setTitle("Upcoming Contests");
         setSupportActionBar(toolbar);
 
         nav = findViewById(R.id.navigationView);
         nav.setNavigationItemSelectedListener(this);
 
         contestlist=new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Details..");
+
+        progressDialog.show();
         apireq();
         Log.d("shubh", "onCreate: "+ contestlist.size());
 

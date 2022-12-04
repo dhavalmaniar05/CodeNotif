@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class EditProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class EditProfileActivity<progressDialog1> extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextInputLayout fn;
     private TextInputLayout cc;
     private TextInputLayout cf;
@@ -50,6 +51,10 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
     private FirebaseAuth mauth;
     private FirebaseUser currentUser;
     private DatabaseReference referenceProfile;
+
+    private ProgressDialog progressDialog;
+
+    public ProgressDialog progressDialog1;
 
     private String name;
 
@@ -82,6 +87,7 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
         showProfile(currentUser);
 
         Button upload = findViewById(R.id.buttonUpload);
+
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +100,9 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog1 = new ProgressDialog(EditProfileActivity.this);
+                progressDialog1.setMessage("Updating Details");
+                progressDialog1.show();
                 String name = fullName.getText().toString();
                 String codechef = codeChef.getText().toString();
                 String codeforces = codeForces.getText().toString();
@@ -112,6 +121,7 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
+                                progressDialog1.dismiss();
                                 Toast.makeText(EditProfileActivity.this, "Successfully updated details", Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(EditProfileActivity.this,UserProfileShow.class);
@@ -119,6 +129,7 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
                                 startActivity(intent);
                                 finish();
                             }else{
+                                progressDialog1.dismiss();
                                 try {
                                     task.getException();
                                 }catch (Exception e){
@@ -134,6 +145,10 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
 
 
     private void showProfile(FirebaseUser currentUser) {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Details..");
+
+        progressDialog.show();
         String uid = currentUser.getUid();
 
         Uri uri1 = mauth.getCurrentUser().getPhotoUrl();
@@ -145,6 +160,7 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
         databaseReference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                progressDialog.dismiss();
                 userDetails user = snapshot.getValue(userDetails.class);
                 if(user!=null){
                     String name = user.getName();
@@ -163,7 +179,7 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                progressDialog.dismiss();
             }
         });
     }

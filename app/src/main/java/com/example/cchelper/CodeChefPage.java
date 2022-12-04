@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +37,8 @@ public class CodeChefPage extends AppCompatActivity implements NavigationView.On
     private ArrayList<codeChefData> arraylist2;
     private ArrayList<ContestsModel> contests;
     private ArrayList<ListItems> listItems;
+
+    private ProgressDialog progressDialog;
 
     Button navBtn;
     Button hideBtn;
@@ -77,6 +80,7 @@ public class CodeChefPage extends AppCompatActivity implements NavigationView.On
 
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         Log.d("apo", "onResponse: " + response.toString());
                         try {
                             JSONObject codeChefObject = new JSONObject(response);
@@ -122,6 +126,7 @@ public class CodeChefPage extends AppCompatActivity implements NavigationView.On
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 // TODO: Handle error
                 Log.d("dhaval", "OnError" + error.getLocalizedMessage());
 
@@ -156,6 +161,10 @@ public class CodeChefPage extends AppCompatActivity implements NavigationView.On
         arraylist2=new ArrayList<>();
         contests=new ArrayList<>();
         listItems=new ArrayList<>();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Details..");
+
+        progressDialog.show();
         apicall1();
         apicall2();
     }
