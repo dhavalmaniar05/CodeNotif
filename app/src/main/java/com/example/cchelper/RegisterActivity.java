@@ -3,6 +3,7 @@ package com.example.cchelper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,6 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText pwdConfirm;
 
     private FirebaseAuth auth;
+
+    private ProgressDialog progressDialog;
 
     private static final String TAG = "RegisterActivity";
 
@@ -105,6 +108,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String textEmail, String password) {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Registering you..");
+
+        progressDialog.show();
         auth.createUserWithEmailAndPassword(textEmail,password).addOnCompleteListener(RegisterActivity.this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
@@ -113,6 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(RegisterActivity.this, "User Registration Successful", Toast.LENGTH_SHORT).show();
                             sendVerificationEmail();
                         }else{
+                            progressDialog.dismiss();
                             try {
                                 throw task.getException();
                             } catch(FirebaseAuthInvalidCredentialsException e){
@@ -138,13 +146,14 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().signOut();
+                            progressDialog.dismiss();
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             finish();
                         }
                         else
                         {
-
                             overridePendingTransition(0, 0);
+                            progressDialog.dismiss();
                             finish();
                             overridePendingTransition(0, 0);
                             startActivity(getIntent());

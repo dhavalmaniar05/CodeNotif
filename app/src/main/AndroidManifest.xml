@@ -29,12 +29,6 @@
             android:name=".CodeChefPage"
             android:exported="false" />
         <activity
-            android:name=".NotesListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NewNoteActivity"
-            android:exported="false" />
-        <activity
             android:name=".DsaActivity"
             android:exported="false" />
         <activity

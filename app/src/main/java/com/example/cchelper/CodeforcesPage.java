@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,8 @@ public class CodeforcesPage extends AppCompatActivity implements NavigationView.
     private FirebaseAuth mauth;
     private FirebaseUser cuser;
     private DatabaseReference databaseReference;
+
+    private ProgressDialog progressDialog;
 
      private  String username;
     private String url1;

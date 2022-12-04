@@ -102,11 +102,13 @@ public class LoginActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.getValue()==null){
                                     Toast.makeText(LoginActivity.this, "You are now Logged In", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
                                     startActivity(new Intent(LoginActivity.this,UserProfileActivity.class));
                                     finish();
                                 }else{
                                     Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    progressDialog.dismiss();
                                     startActivity(intent);
                                     finish();
                                 }
@@ -120,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                     }else{
                         currentUser.sendEmailVerification();
                         mauth.signOut();
+                        progressDialog.dismiss();
                         showAlertDialog();
                     }
                 }else{
