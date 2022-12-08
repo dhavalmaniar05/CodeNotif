@@ -19,6 +19,8 @@
         <activity
             android:name=".ContestsActivity"
             android:exported="false" />
+        <receiver android:name=".AlertReceiver" android:enabled="true" />
+        <receiver android:name=".AlarmReceiver"  android:enabled="true"/>
         <activity
             android:name=".LeetCode_page"
             android:exported="false" />

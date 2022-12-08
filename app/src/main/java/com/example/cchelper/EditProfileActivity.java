@@ -102,7 +102,7 @@ public class EditProfileActivity<progressDialog1> extends AppCompatActivity impl
             public void onClick(View view) {
                 progressDialog1 = new ProgressDialog(EditProfileActivity.this);
                 progressDialog1.setMessage("Updating Details");
-                progressDialog1.show();
+
                 String name = fullName.getText().toString();
                 String codechef = codeChef.getText().toString();
                 String codeforces = codeForces.getText().toString();
@@ -112,6 +112,7 @@ public class EditProfileActivity<progressDialog1> extends AppCompatActivity impl
                     fullName.setError("Full Name is required");
                     fullName.requestFocus();
                 }else{
+                    progressDialog1.show();
                     userDetails updatedUser = new userDetails(name,codechef,codeforces,leetcode);
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Registered Users");
 

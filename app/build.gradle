@@ -12,8 +12,12 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        resources.excludes.add("androidsupportmultidexversion.txt")
     }
 
     buildTypes {
@@ -45,6 +49,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
 }
